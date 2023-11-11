@@ -10,11 +10,20 @@ import com.raquo.laminar.api.L.{*, given}
 object Layout {
 
   case class Builder() {
-    def withColumns(cols: Int): Builder = {
-      this
-    }
+    private var columns: Seq[HtmlElement] = Seq.empty
     def withIcon(icon: String): Builder = {
       this
+    }
+    def withColumnsColumns(cols: HtmlElement*): Builder = {
+      columns = columns ++ cols
+      this
+    }
+
+    def build(): HtmlElement = {
+      columns.length match {
+        case 1 => div(width:="100%", columns.head )
+        case _ => div(columns)
+      }
     }
   }
 }

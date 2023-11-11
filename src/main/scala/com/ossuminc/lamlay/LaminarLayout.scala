@@ -9,16 +9,7 @@ import com.raquo.laminar.nodes.ReactiveElement
 
 @main
 def main(): Unit = {
-  lazy val appContainer = dom.document.querySelector("#appContent")
-  renderOnDomContentLoaded(appContainer, LaminarLayout.appContent())
-}
-
-object LaminarLayout {
-
-  def appContent(): ReactiveElement.Base = {
-    div(
-      h1("Hello Scala.js and Vite")
-    )
-  }
-
+  lazy val builder = Layout.Builder()
+  builder.withColumnsColumns(h1("Hello Scala.js and Vite with Head.update"))
+  Body.update(builder)
 }
