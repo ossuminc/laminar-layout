@@ -1,4 +1,4 @@
-package com.ossuminc.lamlay
+package com.ossum.lamlay
 
 import scala.scalajs.js
 import org.scalajs.dom
@@ -11,7 +11,7 @@ object Body {
 
   def update(builder: Layout.Builder): Unit = {
     val rootNode = builder.build()
-    val selector = dom.document.body.querySelector("#appContent")
+    val selector = dom.document.body.querySelector("#app")
     renderOnDomContentLoaded(selector, rootNode)
   }
 }

@@ -1,4 +1,4 @@
-package com.ossuminc.lamlay
+package com.ossum.lamlay
 
 import scala.scalajs.js
 import org.scalajs.dom

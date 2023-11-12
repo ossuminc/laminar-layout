@@ -1,6 +1,10 @@
 
 import org.scalajs.linker.interface.ModuleSplitStyle
 import scala.sys.process.Process
+import sbtdynver.DynVerPlugin.autoImport.dynverSeparator
+// import sbtdynver.DynVerPlugin.autoImport.dynverSonatypeSnapshots
+import sbtdynver.DynVerPlugin.autoImport.dynverVTagPrefix
+
 
 Global / onChangedBuildSource := ReloadOnSourceChanges
 
@@ -10,12 +14,18 @@ lazy val lamlay = project.in(file("."))
   .settings(
     name := "laminar-layout",
     scalaVersion := "3.3.1",
+    organization := "com.ossum",
+    ThisBuild / dynverVTagPrefix := false,
+    // NEVER  SET  THIS: version := "0.1"
+    // IT IS HANDLED BY: sbt-dynver
+    ThisBuild / dynverSeparator := "-",
+
 
     // Tell Scala.js that this is an application with a main method
     scalaJSUseMainModuleInitializer := true,
 
     // Tell Scala.js that the main class is named "Layout"
-    mainClass := Some("com.ossuminc.lamlay.LaminarLayout"),
+    mainClass.withRank(KeyRanks.Invisible) := Some("com.ossum.lamlay.TestMain"),
 
     /* Configure Scala.js to emit modules in the optimal way to
      * connect to Vite's incremental reload.
