@@ -20,12 +20,8 @@ lazy val lamlay = project.in(file("."))
     // IT IS HANDLED BY: sbt-dynver
     ThisBuild / dynverSeparator := "-",
 
-
     // Tell Scala.js that this is an application with a main method
-    scalaJSUseMainModuleInitializer := true,
-
-    // Tell Scala.js that the main class is named "Layout"
-    mainClass.withRank(KeyRanks.Invisible) := Some("com.ossum.lamlay.TestMain"),
+    scalaJSUseMainModuleInitializer := false,
 
     /* Configure Scala.js to emit modules in the optimal way to
      * connect to Vite's incremental reload.
@@ -40,12 +36,18 @@ lazy val lamlay = project.in(file("."))
           ModuleSplitStyle.SmallModulesFor(List("lamlay")))
     },
 
-    // For ScalablyTyped
+    // How to run Javascript code from sbt
+    jsEnv := new org.scalajs.jsenv.jsdomnodejs.JSDOMNodeJSEnv(),
+    Test/requireJsDomEnv := true,
+
+
+      // For ScalablyTyped
     externalNpm := {
       Process(Seq("npm", "install"), baseDirectory.value).!
       baseDirectory.value
     },
     Compile / npmDependencies.withRank(KeyRanks.Invisible)  := Seq(
+//      "@material/web" -> "1.0.1",
       "chart.js" -> "2.9.4"
     ),
 
@@ -56,6 +58,7 @@ lazy val lamlay = project.in(file("."))
       "org.scala-js" %%% "scalajs-dom" % "2.4.0",
       "com.raquo" %%% "laminar" % "16.0.0",
       "com.raquo" %%% "waypoint" % "7.0.0",
-      "org.scala-js" %%% "scalajs-dom" % "2.2.0"
+      "org.scalactic" %%% "scalactic" % "3.2.17",
+      "org.scalatest" %%% "scalatest" % "3.2.17" % "test"
     )
   )

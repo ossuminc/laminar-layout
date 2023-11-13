@@ -12,3 +12,5 @@ addSbtPlugin("org.wartremover" % "sbt-wartremover" % "3.1.5")
 
 addSbtPlugin("com.github.sbt" % "sbt-native-packager" % "1.9.16")
 addSbtPlugin("com.github.sbt" % "sbt-pgp" % "2.2.1")
+
+libraryDependencies += "org.scala-js" %% "scalajs-env-jsdom-nodejs" % "1.0.0"
