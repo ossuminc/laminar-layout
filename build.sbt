@@ -47,7 +47,6 @@ lazy val lamlay = project.in(file("."))
       baseDirectory.value
     },
     Compile / npmDependencies.withRank(KeyRanks.Invisible)  := Seq(
-//      "@material/web" -> "1.0.1",
       "chart.js" -> "2.9.4"
     ),
 
